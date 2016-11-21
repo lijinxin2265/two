@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+div{
+    width:100px;
+    height:100px;
+    background:red;
+    position:absolute;
+}
+</style>
+<script>
+    window.onload=function(){
+        var oDiv = document.querySelector('div');
+        oDiv.addEventListener('touchstart', start, false)
+         function start(ev){
+                    var disX=ev.targetTouches[0].clientX-oDiv.offsetLeft;
+                    var disY=ev.targetTouches[0].clientY-oDiv.offsetTop;
+                    document.addEventListener('touchmove',move,false);
+                    document.addEventListener('touchend',end , false)
+               
+                function move(ev){
+                    var l = ev.targetTouches[0].clientX -disX;
+                    var t = ev.targetTouches[0].clientY -disY;
+                    oDiv.style.left=l+'px';
+                    oDiv.style.top=t+'px';
+            }  
+                function end(){
+                    document.removeEventListener('touchmove', move, false)
+                    document.removeEventListener('touchend',end,false)
+                }  
+
+        }
+    }
+</script>
+</head>
+<body>
+    <div>
+        
+    </div>
+</body>
+</html>
